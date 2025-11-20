@@ -7,7 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Sora 2 Watermark Remover - A Next.js application for removing watermarks from Sora AI videos with drag & drop upload, real-time progress tracking, and before/after video preview.
 
 **Runtime**: Bun (not npm/yarn/pnpm)
-**Framework**: Next.js 15 + React 19 + TypeScript 5.3
+**Framework**: Next.js 16.0.3 + React 19.2.0 + TypeScript 5.9.3
+**Styling**: Tailwind CSS 4.1.17 + DaisyUI 5.5.5
 
 ## Development Commands
 
@@ -218,11 +219,35 @@ VideoState = {
 
 ## Styling
 
-Uses Tailwind CSS + DaisyUI:
-- DaisyUI themes: `light`, `dark`, `cupcake` (`tailwind.config.ts:19`)
-- DaisyUI components: `btn`, `btn-primary`, `btn-lg`, `card`, `modal`, `loading`
-- Responsive design with mobile-first approach
-- Custom gradient animations in `ProgressBar.tsx:25`
+Uses Tailwind CSS 4 + DaisyUI 5:
+
+### Tailwind CSS 4 Migration Notes
+
+**Major Changes from v3 to v4:**
+- **CSS-First Configuration**: Uses `@import "tailwindcss"` instead of `@tailwind` directives (`app/globals.css:1`)
+- **Plugin Loading**: Plugins loaded via `@plugin` directive in CSS (`app/globals.css:2`)
+- **Config Reference**: Uses `@config` directive to reference tailwind.config.ts (`app/globals.css:4`)
+- **PostCSS Plugin**: Uses `@tailwindcss/postcss` instead of `tailwindcss` package (`postcss.config.mjs:3`)
+- **Simplified Config**: `tailwind.config.ts` now only contains content paths and no plugins/theme extensions
+
+### DaisyUI 5 Configuration
+
+- **Version**: DaisyUI 5.5.5 (first version compatible with Tailwind CSS 4)
+- **Loading Method**: Use `@plugin "daisyui"` in CSS file instead of plugins array in config
+- **Themes**: Default themes available: `light`, `dark`, `cupcake`
+- **Components**: `btn`, `btn-primary`, `btn-lg`, `card`, `modal`, `loading`
+- **Responsive Design**: Mobile-first approach
+- **Custom Animations**: Gradient animations in `ProgressBar.tsx:25`
+
+### Migration Summary
+
+1. **package.json**: Updated to use `@tailwindcss/postcss@4.1.17` and `tailwindcss@4.1.17`
+2. **postcss.config.mjs**: Changed from `tailwindcss: {}` to `'@tailwindcss/postcss': {}`
+3. **app/globals.css**:
+   - Changed from `@tailwind base/components/utilities` to `@import "tailwindcss"`
+   - Added `@plugin "daisyui"` for DaisyUI integration
+   - Added `@config "../tailwind.config.ts"` to reference config file
+4. **tailwind.config.ts**: Removed plugins array and theme extensions (now handled by DaisyUI plugin)
 
 ## Key Files Reference
 

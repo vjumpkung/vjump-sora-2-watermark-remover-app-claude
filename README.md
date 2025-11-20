@@ -14,12 +14,12 @@ A modern web application for removing watermarks from Sora AI videos, built with
 ## Tech Stack
 
 - **Runtime**: Bun
-- **Framework**: Next.js 16
-- **Language**: TypeScript
-- **State Management**: Zustand
-- **Styling**: Tailwind CSS + DaisyUI
-- **HTTP Client**: Axios
-- **File Upload**: React Dropzone
+- **Framework**: Next.js 16.0.3
+- **Language**: TypeScript 5.9.3
+- **State Management**: Zustand 5.0.8
+- **Styling**: Tailwind CSS 4.1.17 + DaisyUI 5.5.5
+- **HTTP Client**: Axios 1.13.2
+- **File Upload**: React Dropzone 14.3.8
 
 ## Getting Started
 
